@@ -1,0 +1,34 @@
+{
+  "name": "@indlekofer/redux-store",
+  "version": "1.1.0",
+  "description": "redux store",
+  "author": "Daniel Indlekofer <daniel@indlekofer.org>",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indlekofer/redux-store.git"
+  },
+  "main": "./cjs/index.js",
+  "scripts": {
+    "build:commonjs": "babel src --out-dir cjs",
+    "build": "npm run build:commonjs",
+    "test": "mocha --require @babel/register",
+    "test:cover": "nyc --reporter=text mocha --require @babel/register"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0"
+  },
+  "dependencies": {
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.2.0"
+  },
+  "files": [
+    "cjs/"
+  ]
+}
