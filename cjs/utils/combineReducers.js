@@ -11,18 +11,25 @@ exports.default = void 0;
  * @see https://github.com/reduxjs/redux/blob/master/src/combineReducers.js
  */
 var _default = function _default(reducers) {
-  var reducerKeys = Object.keys(reducers);
   var finalReducers = {};
+  var finalReducerKeys;
 
-  for (var i = 0, c = reducerKeys.length; i < c; i++) {
-    var key = reducerKeys[i];
+  if (typeof reducers === 'undefined') {
+    finalReducerKeys = [];
+  } else {
+    var reducerKeys = Object.keys(reducers);
 
-    if (typeof reducers[key] === 'function') {
-      finalReducers[key] = reducers[key];
+    for (var i = 0, c = reducerKeys.length; i < c; i++) {
+      var key = reducerKeys[i];
+
+      if (typeof reducers[key] === 'function') {
+        finalReducers[key] = reducers[key];
+      }
     }
+
+    finalReducerKeys = Object.keys(finalReducers);
   }
 
-  var finalReducerKeys = Object.keys(finalReducers);
   return function () {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var action = arguments.length > 1 ? arguments[1] : undefined;

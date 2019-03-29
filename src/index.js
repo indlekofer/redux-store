@@ -2,14 +2,8 @@ import { applyMiddleware, createStore, bindActionCreators } from 'redux';
 import thunk from 'redux-thunk';
 
 import modifiedCombineReducers from './utils/combineReducers';
-
-const nullReducer = (state = null) => state;
-const getInitialReducers = () => {
-  return {___: nullReducer};
-};
-
-const store = createStore(modifiedCombineReducers(getInitialReducers()), {}, applyMiddleware(thunk));
-var reducers = getInitialReducers();
+const store = createStore(modifiedCombineReducers(), {}, applyMiddleware(thunk));
+var reducers = {};
 
 store.inject = function (namespace, reducer, force = false) {
   if (force || typeof reducers[namespace] == "undefined") {
@@ -17,11 +11,12 @@ store.inject = function (namespace, reducer, force = false) {
     store.replaceReducer(modifiedCombineReducers(reducers));
   }
 };
+
 store.remove = function (namespace) {
   if (typeof namespace == "undefined") {
-    reducers = getInitialReducers();
-    store.replaceReducer(modifiedCombineReducers(getInitialReducers()));
-  } else if (typeof reducers[namespace] != "undefined") {
+    reducers = {};
+    store.replaceReducer(modifiedCombineReducers());
+  } else {
     reducers[namespace] = undefined;
     store.replaceReducer(modifiedCombineReducers(reducers));
   }

@@ -19,19 +19,8 @@ var _combineReducers = _interopRequireDefault(require("./utils/combineReducers")
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var nullReducer = function nullReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  return state;
-};
-
-var getInitialReducers = function getInitialReducers() {
-  return {
-    ___: nullReducer
-  };
-};
-
-var store = (0, _redux.createStore)((0, _combineReducers.default)(getInitialReducers()), {}, (0, _redux.applyMiddleware)(_reduxThunk.default));
-var reducers = getInitialReducers();
+var store = (0, _redux.createStore)((0, _combineReducers.default)(), {}, (0, _redux.applyMiddleware)(_reduxThunk.default));
+var reducers = {};
 
 store.inject = function (namespace, reducer) {
   var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -44,9 +33,9 @@ store.inject = function (namespace, reducer) {
 
 store.remove = function (namespace) {
   if (typeof namespace == "undefined") {
-    reducers = getInitialReducers();
-    store.replaceReducer((0, _combineReducers.default)(getInitialReducers()));
-  } else if (typeof reducers[namespace] != "undefined") {
+    reducers = {};
+    store.replaceReducer((0, _combineReducers.default)());
+  } else {
     reducers[namespace] = undefined;
     store.replaceReducer((0, _combineReducers.default)(reducers));
   }

@@ -4,15 +4,20 @@
  * @see https://github.com/reduxjs/redux/blob/master/src/combineReducers.js
  */
 export default (reducers) => {
-  const reducerKeys = Object.keys(reducers)
   const finalReducers = {}
-  for (let i = 0, c = reducerKeys.length; i < c; i++) {
-    const key = reducerKeys[i]
-    if (typeof reducers[key] === 'function') {
-      finalReducers[key] = reducers[key]
+  var finalReducerKeys;
+  if (typeof reducers === 'undefined') {
+    finalReducerKeys = [];
+  } else {
+    const reducerKeys = Object.keys(reducers)
+    for (let i = 0, c = reducerKeys.length; i < c; i++) {
+      const key = reducerKeys[i]
+      if (typeof reducers[key] === 'function') {
+        finalReducers[key] = reducers[key]
+      }
     }
+    finalReducerKeys = Object.keys(finalReducers)
   }
-  const finalReducerKeys = Object.keys(finalReducers)
   return (state = {}, action) => {
     const nextState = {}
     for (let i = 0, c = finalReducerKeys.length; i < c; i++) {
