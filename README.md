@@ -1,6 +1,6 @@
 # @indlekofer/redux-store
 
-redux store with injectable reducers for module seperation
+redux store with injectable reducers and middleware for module seperation
 
 ## Usage
 
@@ -10,38 +10,37 @@ import store from '@indlekofer/redux-store';
 //dispatch actions
 store.dispatch({type: "test"});
 
-//dispatch thunk
+//dispatch thunk - thunk middleware is always there
 store.dispatch(() => (dispatch, getState) => dispatch({type: "test"}));
 ```
 
-## inject
+# Function exports
 
-### Usage
+## injectReducer
 
-```js
-//inject reducer
-store.inject('App', Reducer);
-```
-
-### Parameters
-
-  **namespace**: string  
   **reducer**: function  
+  **namespace**: string  
   **force**: boolean (optional default false) replace existing namspaces  
 
-## remove
+## removeReducer
 
-### Usage
+remove a specific reducer by namespace
 
-```js
-//remove reducers
-store.remove("name1");
+  **namespace**: string  
 
-//remove all
-store.remove();
-```
+## resetReducers
 
-### Parameters
+remove all reducers
 
-  **namespace**: string (optional)  
+## injectMiddleware
+
+  **middleware**: function  
+  **namespace**: string  
+  **force**: boolean (optional default false) replace existing namspaces  
+
+## removeMiddleware
+
+  **namespace**: string  
+
+## resetMiddleware
 

@@ -1,76 +1,76 @@
 import assert from 'assert';
-import store from '../src/index';
+import store, { removeReducer, injectReducer, resetReducers } from '../src/index';
 
 const REDUCER_ONE = 'REDUCER_ONE';
 const REDUCER_TWO = 'REDUCER_TWO';
 
 //create a dummy reducer
-var Reducer = (state = {message: "default"}, action) => {
+const Reducer = (state = {message: "default"}, action) => {
   return state;
 }
 //create a dummy reducer
-var Reducer2 = (state = {message: "default"}, action) => {
+const Reducer2 = (state = {message: "default"}, action) => {
   return state;
 }
 //create a dummy reducer
-var Reducer3 = (state = {message: "forced"}, action) => {
+const Reducer3 = (state = {message: "forced"}, action) => {
   return {message: "forced"};
 }
 
-describe('index', () => {
+describe('reducer', () => {
   beforeEach(() => {
-    store.remove();
-    store.inject(REDUCER_ONE, Reducer);
-    store.inject(REDUCER_TWO, Reducer2);
+    resetReducers();
+    injectReducer(Reducer, REDUCER_ONE);
+    injectReducer(Reducer2, REDUCER_TWO);
   });
   it('should be empty', () => {
-    store.remove(REDUCER_ONE);
+    removeReducer(REDUCER_ONE);
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(false, typeof store.getState()[REDUCER_TWO] === 'undefined');
-    store.remove(REDUCER_TWO);
+    removeReducer(REDUCER_TWO);
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(true, typeof store.getState()[REDUCER_TWO] === 'undefined');
   });
 
   it('inject force', () => {
-    store.inject(REDUCER_TWO, Reducer3, true);
+    injectReducer(Reducer3, REDUCER_TWO, true);
     assert.equal('default', store.getState()[REDUCER_ONE].message);
     assert.equal('forced', store.getState()[REDUCER_TWO].message);
   });
   it('inject with out force', () => {
-    store.inject(REDUCER_TWO, Reducer2);
+    injectReducer(Reducer2, REDUCER_TWO);
     assert.equal('default', store.getState()[REDUCER_ONE].message);
     assert.equal('default', store.getState()[REDUCER_TWO].message);
   });
   it('nothing should change', () => {
-    store.remove('notexists');
+    removeReducer('notexists');
     assert.equal(false, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(false, typeof store.getState()[REDUCER_TWO] === 'undefined');
   });
   it('should clear all', () => {
-    store.remove();
+    resetReducers();
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(true, typeof store.getState()[REDUCER_TWO] === 'undefined');
-    store.inject(REDUCER_ONE, Reducer);
-    store.inject(REDUCER_TWO, Reducer2);
+    injectReducer(Reducer, REDUCER_ONE);
+    injectReducer(Reducer2, REDUCER_TWO);
     assert.equal(false, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(false, typeof store.getState()[REDUCER_TWO] === 'undefined');
-    store.remove();
+    resetReducers();
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(true, typeof store.getState()[REDUCER_TWO] === 'undefined');
   });
   it('should clear specific and all', () => {
-    store.remove();
+    resetReducers();
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(true, typeof store.getState()[REDUCER_TWO] === 'undefined');
-    store.inject(REDUCER_ONE, Reducer);
-    store.inject(REDUCER_TWO, Reducer2);
+    injectReducer(Reducer, REDUCER_ONE);
+    injectReducer(Reducer2, REDUCER_TWO);
     assert.equal(false, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(false, typeof store.getState()[REDUCER_TWO] === 'undefined');
-    store.remove(REDUCER_ONE);
+    removeReducer(REDUCER_ONE);
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(false, typeof store.getState()[REDUCER_TWO] === 'undefined');
-    store.remove();
+    resetReducers();
     assert.equal(true, typeof store.getState()[REDUCER_ONE] === 'undefined');
     assert.equal(true, typeof store.getState()[REDUCER_TWO] === 'undefined');
   });

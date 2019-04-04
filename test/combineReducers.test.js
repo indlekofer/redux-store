@@ -10,15 +10,15 @@ const compare = (a, b) => {
 }
 
 //create a dummy reducer
-var Reducer = (state = {message: "default"}, action) => {
+const Reducer = (state = {message: "default"}, action) => {
   return state;
 }
 //create a dummy reducer
-var Reducer2 = (state = {message: "default"}, action) => {
+const Reducer2 = (state = {message: "default"}, action) => {
   return state;
 }
 //create a dummy reducer
-var Reducer3 = (state = {message: "forced"}, action) => {
+const Reducer3 = (state = {message: "forced"}, action) => {
   return undefined;
 }
 

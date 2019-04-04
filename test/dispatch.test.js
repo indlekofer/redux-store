@@ -1,5 +1,5 @@
 import assert from 'assert';
-import store from '../src/index';
+import store, { injectReducer, resetReducers } from '../src/index';
 
 const REDUCER_ONE = 'REDUCER_ONE';
 const REDUCER_TWO = 'REDUCER_TWO';
@@ -39,9 +39,9 @@ describe('dispatch', () => {
   }
 
   beforeEach(() => {
-    store.remove();
-    store.inject(REDUCER_ONE, Reducer);
-    store.inject(REDUCER_TWO, Reducer2);
+    resetReducers();
+    injectReducer(Reducer, REDUCER_ONE);
+    injectReducer(Reducer2, REDUCER_TWO);
   });
 
   afterEach(() => {
