@@ -31,9 +31,9 @@ var setup = function setup() {
 exports.setup = setup;
 
 var injectMiddleware = function injectMiddleware(middleware, namespace, force) {
-  if (typeof namespace == "undefined") {
+  if (typeof namespace == 'undefined') {
     __middlewares[Object.keys(__middlewares).length] = middleware;
-  } else if (force || typeof __middlewares[namespace] == "undefined") {
+  } else if (force || typeof __middlewares[namespace] == 'undefined') {
     __middlewares[namespace] = middleware;
   }
 };
@@ -55,7 +55,7 @@ exports.resetMiddlewares = resetMiddlewares;
 var injectReducer = function injectReducer(reducer, namespace) {
   var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-  if (force || typeof __reducers[namespace] == "undefined") {
+  if (force || typeof __reducers[namespace] == 'undefined') {
     __reducers[namespace] = reducer;
 
     __store.replaceReducer((0, _combineReducers.default)(__reducers));

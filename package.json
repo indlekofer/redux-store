@@ -14,7 +14,9 @@
     "build:commonjs": "babel src --out-dir cjs",
     "build": "npm run build:commonjs",
     "test": "mocha --require @babel/register",
-    "test:cover": "nyc --reporter=text mocha --require @babel/register"
+    "test:cover": "nyc --reporter=text mocha --require @babel/register",
+    "lint": "eslint ./src/",
+    "lint:fix": "eslint ./src/ --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -22,6 +24,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
     "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.4.0",
+    "eslint": "^5.16.0",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0"
   },

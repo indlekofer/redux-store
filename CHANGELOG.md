@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+* added eslint
+
 ## 1.2.0 (2019-04-04)
 
 * changed store object mutation to export functions  
