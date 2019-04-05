@@ -1,5 +1,7 @@
 # @indlekofer/redux-store
 
+[![npm version](https://badge.fury.io/js/%40indlekofer%2Fredux-store.svg)](https://badge.fury.io/js/%40indlekofer%2Fredux-store)
+
 redux store with injectable reducers and middleware for module seperation
 
 ## Usage
