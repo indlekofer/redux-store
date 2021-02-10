@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 /*
  * this is basicaly a clone of the original combineReducers function.
@@ -50,4 +50,4 @@ var _default = function _default(reducers) {
   };
 };
 
-exports.default = _default;
+exports["default"] = _default;

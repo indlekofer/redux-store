@@ -1,6 +1,6 @@
 {
   "name": "@indlekofer/redux-store",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "redux store",
   "author": "Daniel Indlekofer <daniel@indlekofer.org>",
   "keywords": [],
@@ -12,25 +12,25 @@
   "main": "./cjs/index.js",
   "scripts": {
     "build:commonjs": "babel src --out-dir cjs",
-    "build": "npm run build:commonjs",
+    "build": "yarn run build:commonjs",
     "test": "mocha --require @babel/register",
     "test:cover": "nyc --reporter=text mocha --require @babel/register",
     "lint": "eslint ./src/",
     "lint:fix": "eslint ./src/ --fix"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
-    "@babel/preset-env": "^7.4.2",
-    "@babel/register": "^7.4.0",
-    "eslint": "^5.16.0",
-    "mocha": "^6.0.2",
-    "nyc": "^13.3.0"
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/register": "^7.12.13",
+    "eslint": "^7.19.0",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
   },
   "dependencies": {
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.2.0"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "files": [
     "cjs/"

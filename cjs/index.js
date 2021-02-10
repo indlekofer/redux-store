@@ -9,7 +9,7 @@ Object.defineProperty(exports, "bindActionCreators", {
     return _redux.bindActionCreators;
   }
 });
-exports.default = exports.resetReducers = exports.removeReducer = exports.injectReducer = exports.resetMiddlewares = exports.removeMiddleware = exports.injectMiddleware = exports.setup = void 0;
+exports["default"] = exports.resetReducers = exports.removeReducer = exports.injectReducer = exports.resetMiddlewares = exports.removeMiddleware = exports.injectMiddleware = exports.setup = void 0;
 
 var _redux = require("redux");
 
@@ -17,7 +17,7 @@ var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
 
 var _combineReducers = _interopRequireDefault(require("./utils/combineReducers"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var __store;
 
@@ -25,7 +25,7 @@ var __reducers = {};
 var __middlewares = {};
 
 var setup = function setup() {
-  __store = (0, _redux.createStore)((0, _combineReducers.default)(), {}, (0, _redux.applyMiddleware)(_reduxThunk.default, enhancer));
+  __store = (0, _redux.createStore)((0, _combineReducers["default"])(), {}, (0, _redux.applyMiddleware)(_reduxThunk["default"], enhancer));
 };
 
 exports.setup = setup;
@@ -58,7 +58,7 @@ var injectReducer = function injectReducer(reducer, namespace) {
   if (force || typeof __reducers[namespace] == 'undefined') {
     __reducers[namespace] = reducer;
 
-    __store.replaceReducer((0, _combineReducers.default)(__reducers));
+    __store.replaceReducer((0, _combineReducers["default"])(__reducers));
   }
 };
 
@@ -67,7 +67,7 @@ exports.injectReducer = injectReducer;
 var removeReducer = function removeReducer(namespace) {
   __reducers[namespace] = undefined;
 
-  __store.replaceReducer((0, _combineReducers.default)(__reducers));
+  __store.replaceReducer((0, _combineReducers["default"])(__reducers));
 };
 
 exports.removeReducer = removeReducer;
@@ -75,7 +75,7 @@ exports.removeReducer = removeReducer;
 var resetReducers = function resetReducers() {
   __reducers = {};
 
-  __store.replaceReducer((0, _combineReducers.default)());
+  __store.replaceReducer((0, _combineReducers["default"])());
 };
 
 exports.resetReducers = resetReducers;
@@ -100,4 +100,4 @@ var enhancer = function enhancer(store) {
 
 setup();
 var _default = __store;
-exports.default = _default;
+exports["default"] = _default;
